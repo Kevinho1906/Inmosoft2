@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".inicio_sesion">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="588dp"
+        android:layout_height="951dp"
+        android:backgroundTint="#36090909"
+        android:foregroundGravity="bottom|center_vertical"
+        android:foregroundTint="#0700FF17"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.412"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.368"
+        app:srcCompat="@drawable/fondo_proyecto"
+        tools:ignore="MissingConstraints"
+        tools:srcCompat="@drawable/fondo_proyecto" />
+    <TextView
+        android:id="@+id/txtNomProyecto"
+        android:layout_width="336dp"
+        android:layout_height="74dp"
+        android:text="INMOSOFT"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="330dp"
+        android:layout_height="540dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/personalizado"
+        app:cardBackgroundColor="#94AEACAC"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNomProyecto"
+        app:layout_constraintVertical_bias="0.143">
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="540dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/txtInicioSesion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="INICIO SESION"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imgPerfilInicioSesion"
+                android:layout_width="305dp"
+                android:layout_height="124dp"
+                android:layout_marginTop="-450dp"
+                android:src="@drawable/perfil"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:id="@+id/txtUsuario"
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/personalizado"
+                android:drawableLeft="@drawable/baseline_person_24"
+                android:drawablePadding="5dp"
+                android:hint="Usuario"
+                android:padding="8dp"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background" />
+
+            <EditText
+                android:id="@+id/txtContraseña"
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                android:layout_margin="50dp"
+                android:layout_marginTop="100dp"
+                android:background="@drawable/personalizado"
+                android:drawableLeft="@drawable/baseline_lock_24"
+                android:drawablePadding="5dp"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background" />
+
+            <Button
+                android:id="@+id/btnIniciarSesion"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="20dp"
+                android:backgroundTint="@color/gray"
+                android:text="Ingresar"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
