@@ -55,8 +55,6 @@ class vista_principal : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val idUser = intent.getStringExtra("id")
-
 
         txtUser = binding.navView.getHeaderView(0).findViewById(R.id.txtUser)
         txtCorreo =binding.navView.getHeaderView(0).findViewById(R.id.txtCorreo)
@@ -65,7 +63,7 @@ class vista_principal : AppCompatActivity() {
         txtUser.setText(intent.getStringExtra("nombre"))
         txtCorreo.setText(intent.getStringExtra("correo"))
 
-        var url = "http://192.168.20.25:8000/media/"+intent.getStringExtra("foto")
+        var url = "http://192.168.137.46:8000/media/"+intent.getStringExtra("foto")
         Picasso.get()
             .load(url)
             .placeholder(R.drawable.usuario_icono)

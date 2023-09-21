@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -31,7 +32,7 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    /*
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,24 +52,20 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    */
 
+    /*
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //return super.onCreateView(inflater, container, savedInstanceState)
+        return super.onCreateView(inflater, container, savedInstanceState)
 
-
+        Log.e("sds","Aquí")
         listaProyectos = mutableListOf()
         obtenerProyectos()
-        listViewProyectos.setOnItemClickListener { parent, view, position, id ->
-            Toast.makeText(this.requireContext(),
-                "Click en posición $position",  Toast.LENGTH_SHORT).show()
-        }
         return view
-    }
+    }*/
 
 
 
@@ -96,6 +93,7 @@ class HomeFragment : Fragment() {
             { response ->
                 try {
                     val proyectosArray = response.getJSONArray("proyectos")
+                    Log.d("Proyectos", "Número de proyectos recibidos: ${proyectosArray.length()}")
                     for (i in 0 until proyectosArray.length()){
                         val jsonObject = proyectosArray.getJSONObject(i)
                         val urlImagen = jsonObject.getString("foto")
