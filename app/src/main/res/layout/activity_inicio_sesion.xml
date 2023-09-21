@@ -113,9 +113,10 @@
             <Button
                 android:id="@+id/btnIniciarSesion"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_margin="20dp"
                 android:backgroundTint="@color/gray"
+                android:background="@drawable/personalizado_boton"
                 android:text="Ingresar"
                 android:textAlignment="center"
                 android:textColor="@color/white"

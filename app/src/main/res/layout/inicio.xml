@@ -33,11 +33,12 @@
     <Button
         android:id="@+id/btnInicio"
         android:layout_width="220dp"
-        android:layout_height="72dp"
+        android:layout_height="50dp"
         android:backgroundTint="#A6A6A6"
         android:text="Iniciar"
         android:textAlignment="center"
         android:textColor="@color/white"
+        android:background="@drawable/personalizado_boton"
         android:textColorLink="@color/gray"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
