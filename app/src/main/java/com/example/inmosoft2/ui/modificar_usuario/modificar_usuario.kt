@@ -1,34 +1,27 @@
 package com.example.inmosoft2.ui.modificar_usuario
 
+//import com.google.firebase.firestore.auth.User
 import android.content.Context
-import androidx.lifecycle.ViewModelProvider
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.inmosoft2.R
-//import com.google.firebase.firestore.auth.User
-import com.example.inmosoft2.Modelo.User
-import com.google.android.material.navigation.NavigationView
-import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import android.content.SharedPreferences
 
 class modificar_usuario : Fragment() {
 
-    private lateinit var listaUser:MutableList<User>
     //lateinit var imagenPerfil: ImageView
     //lateinit var txtUserName: EditText
     //lateinit var txtCedula: EditText
@@ -49,6 +42,10 @@ class modificar_usuario : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_modificar_usuario, container, false)
+        val sharedPreferences = requireContext().getSharedPreferences("miAppPrefs", Context.MODE_PRIVATE)
+        val idUsuario = sharedPreferences.getInt("ID_USUARIO", -1)
+
+
         val view = inflater.inflate(R.layout.fragment_modificar_usuario, container, false)
 
         val txtUserName = view.findViewById<EditText>(R.id.txtUserName)
@@ -58,7 +55,7 @@ class modificar_usuario : Fragment() {
         val txtCorreoPerfil = view.findViewById<EditText>(R.id.txtCorreoPerfil)
         val txtTelefono = view.findViewById<EditText>(R.id.txtTelefono)
         val btnGuardarCambios = view.findViewById<Button>(R.id.btnGuardarCambios)
-
+        txtApellido.setText("IDUser: $idUsuario")
 
 
         btnGuardarCambios.setOnClickListener {
@@ -85,14 +82,11 @@ class modificar_usuario : Fragment() {
         viewModel = ViewModelProvider(this).get(ModificarUsuarioViewModel::class.java)
         // TODO: Use the ViewModel
 
-
-
-        listaUser = mutableListOf()
         obtenerUsuarios()
     }
 
     private fun obtenerUsuarios() {
-        val url = "http://192.168.137.46:8000/user"
+        val url = "http://192.168.137.177:8000/user"
         val queue = Volley.newRequestQueue(requireContext())
         val jsonUsuario = JsonArrayRequest(Request.Method.GET,url, null,
             { response ->
@@ -107,8 +101,6 @@ class modificar_usuario : Fragment() {
                         val apellido = jsonObject.getString("last_name")
                         val correo = jsonObject.getString("email")
                         val telefono = jsonObject.getString("userTelefono")
-                        val user = User(id, imagenPerfil, userName, cedula, nombre, apellido, correo, telefono)
-                        listaUser.add(user)
                     }
 
                 } catch (e: JSONException) {
@@ -121,7 +113,7 @@ class modificar_usuario : Fragment() {
     }
 
     private fun modificarUsuario(id: Int, nombre: String, apellido: String, correo: String, telefono: String) {
-        val url = "http://192.168.137.46:8000/user/$id" // Reemplaza con la URL correcta de tu API
+        val url = "http://192.168.20.25:8000/user/$id" // Reemplaza con la URL correcta de tu API
 
         // Crear un objeto JSON que contenga los datos actualizados del usuario
         val jsonRequest = JSONObject()

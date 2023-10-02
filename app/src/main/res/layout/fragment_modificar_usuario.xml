@@ -13,6 +13,8 @@
         android:padding="16dp"
         tools:context=".UserEditFragment">
 
+
+
         <ImageView
             android:id="@+id/imagenPerfil"
             android:layout_width="80dp"
@@ -69,7 +71,6 @@
             android:hint="Telefono"
             android:inputType="textEmailAddress"
             android:layout_marginBottom="16dp" />
-
 
         <Button
             android:id="@+id/btnGuardarCambios"

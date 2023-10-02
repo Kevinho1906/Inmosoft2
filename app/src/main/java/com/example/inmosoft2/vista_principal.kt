@@ -1,24 +1,21 @@
 package com.example.inmosoft2
 
-import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
 import com.example.inmosoft2.databinding.ActivityVistaPrincipalBinding
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
+
 
 class vista_principal : AppCompatActivity() {
 
@@ -27,7 +24,6 @@ class vista_principal : AppCompatActivity() {
     lateinit var txtUser: TextView
     lateinit var txtCorreo: TextView
     lateinit var imgFotoPerfil: ImageView
-    //private var idUser:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +45,7 @@ class vista_principal : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_inicio, R.id.nav_cerrar_sesion, R.id.nav_ayuda, R.id.nav_vista_detalle_proyecto, R.id.nav_modificar_usuario
+                R.id.nav_inicio, R.id.nav_cerrar_sesion, R.id.nav_ayuda, R.id.nav_modificar_usuario
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -62,8 +58,12 @@ class vista_principal : AppCompatActivity() {
 
         txtUser.setText(intent.getStringExtra("nombre"))
         txtCorreo.setText(intent.getStringExtra("correo"))
-
-        var url = "http://192.168.137.46:8000/media/"+intent.getStringExtra("foto")
+        var idUser = intent.getStringExtra("idUser")
+        val sharedPreferences = getSharedPreferences("miAppPrefs", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("ID_USUARIO", idUser)
+        editor.apply()
+        var url = "http://192.168.137.177:8000/media/"+intent.getStringExtra("foto")
         Picasso.get()
             .load(url)
             .placeholder(R.drawable.usuario_icono)
@@ -82,8 +82,4 @@ class vista_principal : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    public fun obtenerIdUsuario(): Int {
-        val sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE)
-        return sharedPreferences.getInt("idUsuario", -1) // -1 es un valor predeterminado en caso de que no se encuentre el ID
-    }
 }

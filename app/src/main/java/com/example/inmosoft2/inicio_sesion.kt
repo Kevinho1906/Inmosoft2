@@ -37,7 +37,7 @@ class inicio_sesion : AppCompatActivity() {
     private fun iniciarSesion() {
         val usuario = txtUsuario.text.toString()
         val contraseña = txtContraseña.text.toString()
-        val url = "http://192.168.137.46:8000/Api/inicioSesion/${usuario}/${contraseña}"
+        val url = "http://192.168.137.177:8000/Api/inicioSesion/${usuario}/${contraseña}"
 
         val requestQueue = Volley.newRequestQueue(this)
         val jsonObjectRequest = JsonObjectRequest(
@@ -52,8 +52,7 @@ class inicio_sesion : AppCompatActivity() {
                 if (estado) {
                     // El inicio de sesión fue exitoso
                     Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
-                    guardarIdUsuarioEnPreferencias(idUsuario)
-                    AbrirVistaPrincipal(nombre,correo,foto, idUsuario)
+                    AbrirVistaPrincipal(nombre,correo,foto,idUsuario)
                 } else {
                     Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
                 }
@@ -66,22 +65,14 @@ class inicio_sesion : AppCompatActivity() {
         requestQueue.add(jsonObjectRequest)
     }
 
-    private fun AbrirVistaPrincipal(idUsuario:String, nombre:String,correo:String,foto:String) {
+    private fun AbrirVistaPrincipal(nombre:String,correo:String,foto:String,idUser:String) {
 
         val intent = Intent(this, vista_principal::class.java)
+        intent.putExtra("idUser",idUser)
         intent.putExtra("nombre", nombre)
         intent.putExtra("correo", correo)
         intent.putExtra("foto", foto)
-        intent.putExtra("idUser", idUsuario)
         startActivity(intent)
-
-    }
-
-    private fun guardarIdUsuarioEnPreferencias(idUser: String) {
-        val sharedPreferences = getSharedPreferences("MiAppPref", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("idUser", idUser)
-        editor.apply()
     }
 
 }

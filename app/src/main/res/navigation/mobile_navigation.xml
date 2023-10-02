@@ -27,13 +27,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_vista_detalle_proyecto"
-        android:name="com.example.inmosoft2.ui.Vista_Detalle_Proyecto.vista_detalle_proyecto"
-        android:label="@string/hello_vista_detalle_proyecto"
-        tools:layout="@layout/fragment_ayuda" >
-    </fragment>
-
-    <fragment
         android:id="@+id/nav_modificar_usuario"
         android:name="com.example.inmosoft2.ui.modificar_usuario.modificar_usuario"
         android:label="@string/hello_modificar_usuario"

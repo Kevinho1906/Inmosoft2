@@ -1,14 +1,16 @@
 package com.example.inmosoft2.Modelo
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import com.example.inmosoft2.R
+import com.example.inmosoft2.vista_detalle_proyecto
 import com.squareup.picasso.Picasso
 
 class Adaptador : BaseAdapter {
@@ -56,12 +58,18 @@ class Adaptador : BaseAdapter {
         val txtPrecio: TextView = v.findViewById(R.id.txtPrecio)
         txtPrecio.text = "Desde: $ ${listaProyectos[posicion].precio}"
         val imgFoto: ImageView = v.findViewById(R.id.imgPerfilInicioSesion)
-        var url = "https://inmosoft.pythonanywhere.com/media/"+listaProyectos[posicion].urlImagen
+        var url = "http://192.168.137.177:8000/media/"+listaProyectos[posicion].urlImagen
         Picasso.get()
             .load(url)
             .placeholder(R.drawable.img_1)
             .error(R.drawable.img_2)
             .into(imgFoto)
+        v.findViewById<Button>(R.id.btnVerMas).setOnClickListener {
+            val intent = Intent(contexto, vista_detalle_proyecto::class.java)
+            intent.putExtra("proyectoId", listaProyectos[posicion].idProyecto)
+            intent.putExtra("nombreProyecto", listaProyectos[posicion].nombre)
+            contexto.startActivity(intent)
+        }
         return v;
 
     }
