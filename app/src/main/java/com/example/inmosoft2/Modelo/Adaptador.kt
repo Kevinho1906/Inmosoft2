@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.inmosoft2.R
-import com.example.inmosoft2.vista_detalle_proyecto
+import com.example.inmosoft2.vista_clientes_interesados
 import com.squareup.picasso.Picasso
 
 class Adaptador : BaseAdapter {
@@ -65,7 +65,7 @@ class Adaptador : BaseAdapter {
             .error(R.drawable.img_2)
             .into(imgFoto)
         v.findViewById<Button>(R.id.btnVerMas).setOnClickListener {
-            val intent = Intent(contexto, vista_detalle_proyecto::class.java)
+            val intent = Intent(contexto, vista_clientes_interesados::class.java)
             intent.putExtra("proyectoId", listaProyectos[posicion].idProyecto)
             intent.putExtra("nombreProyecto", listaProyectos[posicion].nombre)
             contexto.startActivity(intent)

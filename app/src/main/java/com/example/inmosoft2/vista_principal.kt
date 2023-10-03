@@ -12,6 +12,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.inmosoft2.databinding.ActivityVistaPrincipalBinding
+import com.example.inmosoft2.ui.modificar_usuario.modificar_usuario
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
@@ -51,7 +52,6 @@ class vista_principal : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-
         txtUser = binding.navView.getHeaderView(0).findViewById(R.id.txtUser)
         txtCorreo =binding.navView.getHeaderView(0).findViewById(R.id.txtCorreo)
         imgFotoPerfil = binding.navView.getHeaderView(0).findViewById(R.id.imgFotoPerfil)
@@ -59,10 +59,12 @@ class vista_principal : AppCompatActivity() {
         txtUser.setText(intent.getStringExtra("nombre"))
         txtCorreo.setText(intent.getStringExtra("correo"))
         var idUser = intent.getStringExtra("idUser")
-        val sharedPreferences = getSharedPreferences("miAppPrefs", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("ID_USUARIO", idUser)
-        editor.apply()
+
+        val miFragmento = modificar_usuario.newInstance()
+        val args = Bundle()
+        args.putString("idUser", idUser.toString())
+        miFragmento.arguments = args
+
         var url = "http://192.168.137.177:8000/media/"+intent.getStringExtra("foto")
         Picasso.get()
             .load(url)

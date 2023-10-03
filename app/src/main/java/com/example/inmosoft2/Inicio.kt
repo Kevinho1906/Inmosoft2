@@ -7,21 +7,31 @@ import android.widget.Button
 
 class Inicio : AppCompatActivity() {
 
-    lateinit var btnInicio: Button
+    lateinit var btnInicioUsuario: Button
+    lateinit var btnInicioCliente: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.inicio)
 
-        btnInicio = findViewById(R.id.btnInicio)
+        btnInicioCliente = findViewById(R.id.btnInicioCliente)
+        btnInicioUsuario = findViewById(R.id.btnInicioUsuario)
 
-        btnInicio.setOnClickListener { inicioSesion() }
+        btnInicioCliente.setOnClickListener { inicioCliente() }
+        btnInicioUsuario.setOnClickListener { inicioUsuario() }
 
     }
 
-    private fun inicioSesion() {
+    private fun inicioUsuario() {
 
         val intent = Intent(this, inicio_sesion::class.java)
+        startActivity(intent)
+
+    }
+
+    private fun inicioCliente() {
+
+        val intent = Intent(this, listar_proyectos_cliente::class.java)
         startActivity(intent)
 
     }

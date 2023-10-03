@@ -42,45 +42,17 @@ class modificar_usuario : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_modificar_usuario, container, false)
-        val sharedPreferences = requireContext().getSharedPreferences("miAppPrefs", Context.MODE_PRIVATE)
-        val idUsuario = sharedPreferences.getInt("ID_USUARIO", -1)
-
 
         val view = inflater.inflate(R.layout.fragment_modificar_usuario, container, false)
 
-        val txtUserName = view.findViewById<EditText>(R.id.txtUserName)
-        val txtCedula = view.findViewById<EditText>(R.id.txtCedula)
-        val txtNombre = view.findViewById<EditText>(R.id.txtNombre)
-        val txtApellido = view.findViewById<EditText>(R.id.txtApellido)
-        val txtCorreoPerfil = view.findViewById<EditText>(R.id.txtCorreoPerfil)
-        val txtTelefono = view.findViewById<EditText>(R.id.txtTelefono)
-        val btnGuardarCambios = view.findViewById<Button>(R.id.btnGuardarCambios)
-        txtApellido.setText("IDUser: $idUsuario")
-
-
-        btnGuardarCambios.setOnClickListener {
-            val nombre = txtNombre.text.toString()
-            val apellido = txtApellido.text.toString()
-            val correo = txtCorreoPerfil.text.toString()
-            val telefono = txtTelefono.text.toString()
-
-            val idUsuario = obtenerIdUsuario() // Debes implementar esta función para obtener el ID del usuario actual
-
-            modificarUsuario(idUsuario, nombre, apellido, correo, telefono)
-        }
-
         return view
     }
-
-    private fun obtenerIdUsuario(): Int {
-        val sharedPreferences = requireContext().getSharedPreferences("MiAppPref", Context.MODE_PRIVATE)
-        return sharedPreferences.getInt("idUser", -1) // -1 es un valor predeterminado en caso de que no se encuentre el ID
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ModificarUsuarioViewModel::class.java)
         // TODO: Use the ViewModel
+        val idUser = arguments?.getString("idUser")
+        println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIII X4 " + idUser)
 
         obtenerUsuarios()
     }

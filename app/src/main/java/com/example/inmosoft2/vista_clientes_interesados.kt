@@ -7,21 +7,18 @@ import android.widget.TextView
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.inmosoft2.Modelo.Adaptador
 import com.example.inmosoft2.Modelo.Adaptador_Cliente_Interesado
 import com.example.inmosoft2.Modelo.Cliente
-import com.example.inmosoft2.Modelo.Proyecto
 import org.json.JSONException
 
-class vista_detalle_proyecto : AppCompatActivity() {
+class vista_clientes_interesados : AppCompatActivity() {
     lateinit var txtView: TextView
     private lateinit var listaClientesInteresados:MutableList<Cliente>
     private lateinit var listViewCliente: ListView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_vista_detalle_proyecto)
+        setContentView(R.layout.activity_vista_clientes_interesados)
         obtenerClientesInteresados()
         listaClientesInteresados = mutableListOf()
         listViewCliente = findViewById(R.id.listaClientesInteresados)
