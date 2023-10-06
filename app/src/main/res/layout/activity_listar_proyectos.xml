@@ -42,9 +42,10 @@
     <Button
         android:id="@+id/btnVerMas"
         style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_width="127dp"
+        android:layout_height="48dp"
         android:backgroundTint="@color/white"
+        android:drawableStart="@drawable/baseline_add_24"
         android:text="Ver Mas"
         android:textAlignment="center"
         android:textColor="@color/black"

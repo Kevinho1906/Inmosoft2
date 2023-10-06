@@ -63,12 +63,12 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        checkInternetConnection()
+        //checkInternetConnection()
 
     }
 
 
-    private fun checkInternetConnection() {
+    /*private fun checkInternetConnection() {
         val connectivityManager =
             requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
@@ -85,10 +85,10 @@ class HomeFragment : Fragment() {
             imageView?.visibility = View.GONE
             textView?.visibility = View.GONE
         }
-    }
+    }*/
 
     private fun obtenerProyectos() {
-        val url = "http://192.168.137.177:8000/listarProyectos/"
+        val url = "http://192.168.137.177:8000/listarProyectosModificar/"
         val queue = Volley.newRequestQueue(requireContext())
         val jsonListaProyecto = JsonObjectRequest(
             Request.Method.GET,url, null,

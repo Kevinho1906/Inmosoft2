@@ -27,7 +27,7 @@ class listar_proyectos_cliente : AppCompatActivity() {
     }
 
     private fun obtenerProyectos() {
-        val url = "http://192.168.137.177:8000/listarProyectos/"
+        val url = "https://inmosoft.pythonanywhere.com/listarProyectosModificar/"
         val queue = Volley.newRequestQueue(this)
         val jsonListaProyecto = JsonObjectRequest(
             Request.Method.GET,url, null,

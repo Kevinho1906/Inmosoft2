@@ -38,7 +38,6 @@ class inicio_sesion : AppCompatActivity() {
         val usuario = txtUsuario.text.toString()
         val contraseña = txtContraseña.text.toString()
         val url = "http://192.168.137.177:8000/Api/inicioSesion/${usuario}/${contraseña}"
-
         val requestQueue = Volley.newRequestQueue(this)
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
