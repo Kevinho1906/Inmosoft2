@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun obtenerProyectos() {
-        val url = "http://192.168.137.177:8000/listarProyectos/"
+        val url = "http://192.168.137.177:8000/listarProyectosModificar/"
         val queue = Volley.newRequestQueue(requireContext())
         val jsonListaProyecto = JsonObjectRequest(
             Request.Method.GET,url, null,

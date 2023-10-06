@@ -7,7 +7,7 @@
     tools:context=".inicio_sesion">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/img_foto"
         android:layout_width="588dp"
         android:layout_height="951dp"
         android:backgroundTint="#36090909"
