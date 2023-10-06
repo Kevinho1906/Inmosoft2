@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import com.android.volley.Request
@@ -15,6 +17,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.inmosoft2.Modelo.Adaptador_Cliente
 import com.example.inmosoft2.Modelo.Proyecto
+import com.squareup.picasso.Picasso
 import org.json.JSONArray
 import org.json.JSONException
 import java.util.Timer
@@ -24,6 +27,13 @@ class vista_detalle_proyecto : AppCompatActivity() {
     private lateinit var imageUrls: MutableList<String>
     private lateinit var viewPager: ViewPager2
     private lateinit var btnCotizar: Button
+    private lateinit var txtTituloProyecto:TextView
+    private lateinit var txtValorVivienda:TextView
+    private lateinit var txtCostoSeparacion:TextView
+    private lateinit var txtTipoProyecto: TextView
+    private lateinit var txtUbicacion:TextView
+    private lateinit var txtDireccion:TextView
+    private lateinit var imagenPrincipal:ImageView
     private var currentPage = 0
     private val handler = Handler()
     private lateinit var runnable: Runnable
@@ -34,6 +44,14 @@ class vista_detalle_proyecto : AppCompatActivity() {
         viewPager = findViewById(R.id.viewPager)
 
         btnCotizar = findViewById(R.id.btnCotizar)
+        txtTituloProyecto = findViewById(R.id.txtTituloDetalleProyecto)
+        imagenPrincipal = findViewById(R.id.imagenPrincipalDelProyecto)
+        txtValorVivienda = findViewById(R.id.txtValorDeVivienda)
+        txtCostoSeparacion = findViewById(R.id.txtSeparación)
+        txtTipoProyecto = findViewById(R.id.txtTipoProyecto)
+        txtUbicacion = findViewById(R.id.txtUbicacionDetalleProyecto)
+        txtDireccion = findViewById(R.id.txtDireccion)
+
         // Inicializa la lista de URL de imágenes
         imageUrls = mutableListOf()
 
@@ -56,6 +74,19 @@ class vista_detalle_proyecto : AppCompatActivity() {
             Request.Method.GET, url, null,
             Response.Listener { response ->
                 println("!!!!!!!!!!!!!!!!respuesta!!!!!!!"+response)
+                var proyecto = response.getJSONObject("proyecto")
+                txtTituloProyecto.text = proyecto.getString("nombre")
+                var urlProyecto = "https://inmosoft.pythonanywhere.com/media/"+proyecto.getString("foto")
+                Picasso.get()
+                    .load(urlProyecto)
+                    .placeholder(R.drawable.img_1)
+                    .error(R.drawable.img_2)
+                    .into(imagenPrincipal)
+                txtValorVivienda.text = proyecto.getString("precio")
+                txtCostoSeparacion.text = proyecto.getString("costoSeparacion")
+                txtTipoProyecto.text = proyecto.getString("tipo")
+                txtUbicacion.text = proyecto.getString("departamento")+" - "+proyecto.get("municipio")
+                txtDireccion.text = proyecto.getString("direccion")
             },
             Response.ErrorListener { error ->
                 println("!!!!Error!!!!! ${error.message}")
