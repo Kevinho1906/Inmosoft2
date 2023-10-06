@@ -73,17 +73,17 @@
 
     <TextView
         android:id="@+id/txtDireccion"
-        android:layout_width="160dp"
+        android:layout_width="300dp"
         android:layout_height="25dp"
         android:layout_marginBottom="72dp"
-        android:layout_marginTop="-59dp"
         android:text=""
         android:textAlignment="textStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintHorizontal_bias="0.171"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.625" />
 
     <TextView
         android:id="@+id/txtTipoProyecto"
@@ -113,7 +113,7 @@
         app:layout_constraintVertical_bias="0.037" />
 
     <TextView
-        android:id="@+id/txtSeparacion"
+        android:id="@+id/txtSeparación"
         android:layout_width="160dp"
         android:layout_height="25dp"
         android:layout_marginEnd="24dp"
@@ -135,7 +135,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.386"
         app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/txtSeparacion"
+        app:layout_constraintTop_toBottomOf="@+id/txtSeparación"
         app:layout_constraintVertical_bias="0.061" />
 
     <TextView
@@ -202,7 +202,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDireccion"
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintVertical_bias="0.466" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
