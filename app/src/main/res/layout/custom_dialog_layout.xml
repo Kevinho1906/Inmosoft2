@@ -1,0 +1,33 @@
+ <!-- res/layout/custom_dialog_layout.xml -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+    <TextView
+        android:id="@+id/customDialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Título Personalizado"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/customDialogMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mensaje personalizado aquí."
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/customDialogPositiveButton"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:drawableLeft="@drawable/baseline_task_alt_24"
+        android:text="Aceptar" />
+
+</LinearLayout>

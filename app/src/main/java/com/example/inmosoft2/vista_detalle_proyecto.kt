@@ -61,8 +61,9 @@ class vista_detalle_proyecto : AppCompatActivity() {
     }
 
     private fun vistaCotizarProyecto() {
-
+        val idProyecto = intent.getStringExtra("proyectoId")
         val intent = Intent(this, vista_cotizar_proyecto::class.java)
+        intent.putExtra("proyectoId", idProyecto)
         startActivity(intent)
 
     }
