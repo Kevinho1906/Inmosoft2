@@ -1,10 +1,13 @@
 package com.example.inmosoft2
 
+import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.text.set
@@ -23,6 +26,7 @@ class vista_cotizar_proyecto : AppCompatActivity() {
     private lateinit var txtTelefono:EditText
     private lateinit var txtCorreo:EditText
     private lateinit var btnEnviar:Button
+    private var progressDialog: ProgressDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vista_cotizar_proyecto)
@@ -56,6 +60,15 @@ class vista_cotizar_proyecto : AppCompatActivity() {
         if (validarDatos()){
             Toast.makeText(this, "Faltan Datos", Toast.LENGTH_LONG).show()
         }else{
+            val progressDialog = Dialog(this)
+            progressDialog.setContentView(R.layout.custom_progress_dialog)
+            progressDialog.setCancelable(false)
+            val progressBar = progressDialog.findViewById<ProgressBar>(R.id.progressBar)
+            val messageTextView = progressDialog.findViewById<TextView>(R.id.messageTextView)
+            messageTextView.text = "Enviando..." // Puedes cambiar el mensaje aquí
+
+            progressDialog.show()
+
             val idProyecto = intent.getStringExtra("proyectoId")
             val url = "http://192.168.100.11:8000/Api/CotizarProyecto/$idProyecto"
             val requestQueue = Volley.newRequestQueue(this)
@@ -72,6 +85,7 @@ class vista_cotizar_proyecto : AppCompatActivity() {
             val jsonObjectRequest = JsonObjectRequest(
                 Request.Method.POST, url, requestBody,
                 Response.Listener { response ->
+                    progressDialog.dismiss() // Oculta el ProgressDialog
                     println("!!!!!!!!exito!!!!!!!!!==$response")
                     if (response.getBoolean("estado")) {
                         val customDialog = MaterialDialog(this).show {
@@ -101,6 +115,7 @@ class vista_cotizar_proyecto : AppCompatActivity() {
                     }
                 },
                 Response.ErrorListener { error ->
+                    progressDialog.dismiss() // Oculta el ProgressDialog
                     println("!!!!Error!!!!! ${error.message}")
                     Toast.makeText(this, "${error.message}", Toast.LENGTH_LONG).show()
                 })

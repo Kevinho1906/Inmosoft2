@@ -65,7 +65,7 @@ class vista_principal : AppCompatActivity() {
         args.putString("idUser", idUser.toString())
         miFragmento.arguments = args
 
-        var url = "http://192.168.137.177:8000/media/"+intent.getStringExtra("foto")
+        var url = "https://inmosoft.pythonanywhere.com/media/"+intent.getStringExtra("foto")
         Picasso.get()
             .load(url)
             .placeholder(R.drawable.usuario_icono)

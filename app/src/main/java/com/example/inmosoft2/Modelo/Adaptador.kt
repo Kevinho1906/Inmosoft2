@@ -58,7 +58,7 @@ class Adaptador : BaseAdapter {
         val txtPrecio: TextView = v.findViewById(R.id.txtPrecio)
         txtPrecio.text = "Desde: $ ${listaProyectos[posicion].precio}"
         val imgFoto: ImageView = v.findViewById(R.id.imgPerfilInicioSesion)
-        var url = "http://192.168.137.177:8000/media/"+listaProyectos[posicion].urlImagen
+        var url = "https://inmosoft.pythonanywhere.com/media/"+listaProyectos[posicion].urlImagen
         Picasso.get()
             .load(url)
             .placeholder(R.drawable.img_1)

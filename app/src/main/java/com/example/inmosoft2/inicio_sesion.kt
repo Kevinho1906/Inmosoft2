@@ -1,12 +1,14 @@
 package com.example.inmosoft2
 
-import android.content.Context
+import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
@@ -18,6 +20,7 @@ class inicio_sesion : AppCompatActivity() {
     lateinit var txtUsuario: EditText
     lateinit var txtContraseña: EditText
     lateinit var btnIniciarSesion: Button
+    private var progressDialog: ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,38 +41,50 @@ class inicio_sesion : AppCompatActivity() {
     }
 
     private fun iniciarSesion() {
-        if (validarDatos()){
+        if (validarDatos()) {
             Toast.makeText(this, "Faltan Datos", Toast.LENGTH_LONG).show()
-        }else{
+        } else {
+            val progressDialog = Dialog(this)
+            progressDialog.setContentView(R.layout.custom_progress_dialog)
+            progressDialog.setCancelable(false)
+            val progressBar = progressDialog.findViewById<ProgressBar>(R.id.progressBar)
+            val messageTextView = progressDialog.findViewById<TextView>(R.id.messageTextView)
+            messageTextView.text = "Cargando..." // Puedes cambiar el mensaje aquí
+
+            progressDialog.show()
+
             val usuario = txtUsuario.text.toString()
             val contraseña = txtContraseña.text.toString()
-            val url = "http://192.168.137.177:8000/Api/inicioSesion/${usuario}/${contraseña}"
+            val url = "https://inmosoft.pythonanywhere.com/Api/inicioSesion/${usuario}/${contraseña}"
             val requestQueue = Volley.newRequestQueue(this)
             val jsonObjectRequest = JsonObjectRequest(
                 Request.Method.GET, url, null,
                 Response.Listener { response ->
-                    val idUsuario = response.getInt("idUser").toString()
+                    progressDialog.dismiss() // Oculta el ProgressDialog
+                    val idUsuario = response.getString("idUser")
                     val mensaje = response.getString("mensaje")
                     val estado = response.getBoolean("estado")
-                    val nombre = response.getString("nombre")+" "+response.getString("apellidos")
+                    val nombre = response.getString("nombre") + " " + response.getString("apellidos")
                     val correo = response.getString("correo")
                     val foto = response.getString("foto")
                     if (estado) {
                         // El inicio de sesión fue exitoso
                         Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
-                        AbrirVistaPrincipal(nombre,correo,foto,idUsuario)
+                        AbrirVistaPrincipal(nombre, correo, foto, idUsuario)
                     } else {
                         Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
                     }
                 },
                 Response.ErrorListener { error ->
+                    progressDialog.dismiss()// Oculta el ProgressDialog en caso de error
                     println("!!!!Error!!!!! ${error.message}")
-                    Toast.makeText(this,"Error de Conexion", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Error de Conexion", Toast.LENGTH_LONG).show()
                 })
 
             requestQueue.add(jsonObjectRequest)
         }
     }
+
 
     private fun AbrirVistaPrincipal(nombre:String,correo:String,foto:String,idUser:String) {
 

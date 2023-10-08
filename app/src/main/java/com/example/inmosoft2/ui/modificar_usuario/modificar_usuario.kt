@@ -53,11 +53,9 @@ class modificar_usuario : Fragment() {
         // TODO: Use the ViewModel
         val idUser = arguments?.getString("idUser")
         println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIII X4 " + idUser)
-
-        obtenerUsuarios()
     }
 
-    private fun obtenerUsuarios() {
+    private fun obtenerUsuario() {
         val url = "http://192.168.137.177:8000/user"
         val queue = Volley.newRequestQueue(requireContext())
         val jsonUsuario = JsonArrayRequest(Request.Method.GET,url, null,

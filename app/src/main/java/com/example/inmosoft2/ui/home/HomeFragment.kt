@@ -1,6 +1,8 @@
 package com.example.inmosoft2.ui.home
 
 
+import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
@@ -13,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ListView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
@@ -34,9 +37,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private lateinit var listaProyectos:MutableList<Proyecto>
     private lateinit var listViewProyectos: ListView
-    //private lateinit var btnVerDetalle: Button
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var progressDialog: ProgressDialog? = null
     private val binding get() = _binding!!
 
 
@@ -88,12 +89,21 @@ class HomeFragment : Fragment() {
     }*/
 
     private fun obtenerProyectos() {
-        val url = "http://192.168.137.177:8000/listarProyectosModificar/"
+        val progressDialog = Dialog(requireContext())
+        progressDialog.setContentView(R.layout.custom_progress_dialog)
+        progressDialog.setCancelable(false)
+        val progressBar = progressDialog.findViewById<ProgressBar>(R.id.progressBar)
+        val messageTextView = progressDialog.findViewById<TextView>(R.id.messageTextView)
+        messageTextView.text = "" // Puedes cambiar el mensaje aquí
+
+        progressDialog.show()
+        val url = "https://inmosoft.pythonanywhere.com/listarProyectosModificar/"
         val queue = Volley.newRequestQueue(requireContext())
         val jsonListaProyecto = JsonObjectRequest(
             Request.Method.GET,url, null,
             { response ->
                 try {
+                    progressDialog.dismiss()
                     val proyectosArray = response.getJSONArray("proyectos")
                     Log.d("Proyectos", "Número de proyectos recibidos: ${proyectosArray.length()}")
                     for (i in 0 until proyectosArray.length()){
@@ -116,6 +126,7 @@ class HomeFragment : Fragment() {
                     e.printStackTrace()
                 }
             }, { error->
+                progressDialog.dismiss()
                 Toast.makeText(requireContext(), "Error de Conexion", Toast.LENGTH_LONG).show()
                 println("Error----{${error}}")
             })
