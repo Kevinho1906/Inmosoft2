@@ -67,26 +67,7 @@ class HomeFragment : Fragment() {
         //checkInternetConnection()
 
     }
-
-
-    /*private fun checkInternetConnection() {
-        val connectivityManager =
-            requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
-
-        val imageView = view?.findViewById<ImageView>(R.id.internetImageView)
-        val textView = view?.findViewById<TextView>(R.id.internetTextView)
-
-        if (networkInfo == null || !networkInfo.isConnected) {
-            // No hay conexión a Internet
-            imageView?.visibility = View.VISIBLE
-            textView?.visibility = View.VISIBLE
-        } else {
-            // Hay conexión a Internet
-            imageView?.visibility = View.GONE
-            textView?.visibility = View.GONE
-        }
-    }*/
+    
 
     private fun obtenerProyectos() {
         val progressDialog = Dialog(requireContext())

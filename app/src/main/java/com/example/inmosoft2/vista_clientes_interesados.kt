@@ -36,6 +36,7 @@ class vista_clientes_interesados : AppCompatActivity() {
     private fun AbrirVistaPrincipal() {
         val intent = Intent(this, vista_principal::class.java)
         startActivity(intent)
+        finish()
     }
 
     private fun obtenerClientesInteresados() {

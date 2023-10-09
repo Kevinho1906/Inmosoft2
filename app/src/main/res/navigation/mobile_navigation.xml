@@ -19,18 +19,6 @@
         tools:layout="@layout/fragment_cerrar_sesion" >
     </fragment>
 
-    <fragment
-        android:id="@+id/nav_ayuda"
-        android:name="com.example.inmosoft2.ui.ayuda.ayuda"
-        android:label="@string/menu_ayuda"
-        tools:layout="@layout/fragment_ayuda" >
-    </fragment>
 
-    <fragment
-        android:id="@+id/nav_modificar_usuario"
-        android:name="com.example.inmosoft2.ui.modificar_usuario.modificar_usuario"
-        android:label="@string/hello_modificar_usuario"
-        tools:layout="@layout/fragment_modificar_usuario" >
-    </fragment>
 
 </navigation>

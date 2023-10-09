@@ -53,7 +53,7 @@ class vista_cotizar_proyecto : AppCompatActivity() {
     private fun inicioCliente() {
         val intent = Intent(this, listar_proyectos_cliente::class.java)
         startActivity(intent)
-
+        finish()
     }
 
     private fun enviarCotizacion() {

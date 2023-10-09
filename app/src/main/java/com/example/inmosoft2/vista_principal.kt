@@ -1,7 +1,9 @@
 package com.example.inmosoft2
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +14,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.inmosoft2.databinding.ActivityVistaPrincipalBinding
-import com.example.inmosoft2.ui.modificar_usuario.modificar_usuario
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
@@ -46,7 +47,7 @@ class vista_principal : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_inicio, R.id.nav_cerrar_sesion, R.id.nav_ayuda, R.id.nav_modificar_usuario
+                R.id.nav_inicio, R.id.nav_cerrar_sesion,
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -60,10 +61,6 @@ class vista_principal : AppCompatActivity() {
         txtCorreo.setText(intent.getStringExtra("correo"))
         var idUser = intent.getStringExtra("idUser")
 
-        val miFragmento = modificar_usuario.newInstance()
-        val args = Bundle()
-        args.putString("idUser", idUser.toString())
-        miFragmento.arguments = args
 
         var url = "https://inmosoft.pythonanywhere.com/media/"+intent.getStringExtra("foto")
         Picasso.get()
@@ -78,6 +75,10 @@ class vista_principal : AppCompatActivity() {
         menuInflater.inflate(R.menu.vista_principal, menu)
         return true
     }
+    override fun onBackPressed() {
+        // No hacer nada o mostrar un mensaje al usuario
+    }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_vista_principal)

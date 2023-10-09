@@ -27,7 +27,6 @@ class inicio_sesion : AppCompatActivity() {
         setContentView(R.layout.activity_inicio_sesion)
 
 
-
         txtUsuario = findViewById(R.id.txtUsuario)
         txtContraseña = findViewById(R.id.txtContraseña)
 
@@ -35,6 +34,11 @@ class inicio_sesion : AppCompatActivity() {
 
         //Eventos de los botones
         btnIniciarSesion.setOnClickListener { iniciarSesion() }
+    }
+    override fun onBackPressed() {
+        val intent = Intent(this, Inicio::class.java)
+        startActivity(intent)
+        // No hagas nada aquí para evitar el cierre de la actividad.
     }
     private fun validarDatos(): Boolean {
         return txtContraseña.text.isEmpty() || txtUsuario.text.isEmpty()
@@ -94,6 +98,7 @@ class inicio_sesion : AppCompatActivity() {
         intent.putExtra("correo", correo)
         intent.putExtra("foto", foto)
         startActivity(intent)
+        finish()
     }
 
 }
