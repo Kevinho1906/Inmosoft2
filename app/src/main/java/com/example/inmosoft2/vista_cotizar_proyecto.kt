@@ -70,7 +70,7 @@ class vista_cotizar_proyecto : AppCompatActivity() {
             progressDialog.show()
 
             val idProyecto = intent.getStringExtra("proyectoId")
-            val url = "http://192.168.100.11:8000/Api/CotizarProyecto/$idProyecto"
+            val url = "https://inmosoft.pythonanywhere.com/Api/CotizarProyecto/$idProyecto"
             val requestQueue = Volley.newRequestQueue(this)
             // Crear un objeto JSON para enviar en la solicitud POST
             val requestBody = JSONObject()
