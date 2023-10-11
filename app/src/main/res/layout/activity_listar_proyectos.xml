@@ -75,15 +75,14 @@
         android:layout_width="152dp"
         android:layout_height="153dp"
         android:layout_marginStart="-150dp"
-        android:layout_marginTop="-350dp"
         android:src="@drawable/perfil"
         android:translationZ="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.427"
+        app:layout_constraintHorizontal_bias="0.405"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.463" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNombreDelProyecto"
+        app:layout_constraintVertical_bias="0.042" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
