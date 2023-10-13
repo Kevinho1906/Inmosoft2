@@ -34,8 +34,6 @@ class vista_clientes_interesados : AppCompatActivity() {
         txtView.setText("Clientes interesados en el proyecto: "+intent.getStringExtra("nombreProyecto"))
     }
     private fun AbrirVistaPrincipal() {
-        val intent = Intent(this, vista_principal::class.java)
-        startActivity(intent)
         finish()
     }
 

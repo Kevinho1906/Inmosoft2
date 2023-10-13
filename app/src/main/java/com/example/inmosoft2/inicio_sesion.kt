@@ -14,6 +14,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONObject
 
 class inicio_sesion : AppCompatActivity() {
 
@@ -59,10 +60,15 @@ class inicio_sesion : AppCompatActivity() {
 
             val usuario = txtUsuario.text.toString()
             val contraseña = txtContraseña.text.toString()
-            val url = "https://inmosoft.pythonanywhere.com/Api/inicioSesion/${usuario}/${contraseña}"
+            val url = "https://inmosoft.pythonanywhere.com/Api/inicioSesion/"
+
+            val jsonBody = JSONObject()
+            jsonBody.put("usuario", usuario)
+            jsonBody.put("contraseña", contraseña)
+
             val requestQueue = Volley.newRequestQueue(this)
             val jsonObjectRequest = JsonObjectRequest(
-                Request.Method.GET, url, null,
+                Request.Method.POST, url, jsonBody,
                 Response.Listener { response ->
                     progressDialog.dismiss() // Oculta el ProgressDialog
                     val idUsuario = response.getString("idUser")
@@ -80,14 +86,15 @@ class inicio_sesion : AppCompatActivity() {
                     }
                 },
                 Response.ErrorListener { error ->
-                    progressDialog.dismiss()// Oculta el ProgressDialog en caso de error
+                    progressDialog.dismiss() // Oculta el ProgressDialog en caso de error
                     println("!!!!Error!!!!! ${error.message}")
-                    Toast.makeText(this, "Error de Conexion", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Error de Conexión", Toast.LENGTH_LONG).show()
                 })
 
             requestQueue.add(jsonObjectRequest)
         }
     }
+
 
 
     private fun AbrirVistaPrincipal(nombre:String,correo:String,foto:String,idUser:String) {
